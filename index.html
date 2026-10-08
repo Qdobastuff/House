@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Open House Checklist</title>
+<style>
+:root{--bg:#13171d;--panel:#1b2129;--line:#2a323d;--text:#e7ebf0;--muted:#8c97a6;--accent:#5cc8b4;--done:#6b7685;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:100px;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px}
+.wrap{max-width:720px;margin:0 auto}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+h1{font-size:19px;margin:0;font-weight:700}
+.count{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.tabs{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding-bottom:2px}
+.tabs button{flex:none;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer}
+.tabs button.on{color:#0c1210;background:var(--accent);border-color:var(--accent);font-weight:600}
+main{padding:6px 16px 60px}
+h2.phase{font-size:15px;color:var(--accent);margin:22px 2px 10px;font-weight:700}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
+summary{list-style:none;cursor:pointer;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:650}
+summary::-webkit-details-marker{display:none}
+summary small{color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+summary.full small{color:var(--accent)}
+ul{list-style:none;margin:0;padding:0 6px 8px}
+li label{display:flex;gap:12px;align-items:flex-start;padding:9px 8px;border-radius:8px;cursor:pointer}
+li label:active{background:var(--line)}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin:1px 0 0;border:2px solid var(--muted);border-radius:6px;display:grid;place-content:center;cursor:pointer;background:transparent}
+input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent)}
+input[type=checkbox]:checked:after{content:"";width:6px;height:11px;border:solid #0c1210;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+input[type=checkbox]:checked + span{color:var(--done);text-decoration:line-through}
+input[type=checkbox]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{margin:0 14px 10px;color:var(--muted);font-size:14px}
+.hidden{display:none}
+.foot{display:flex;gap:10px;justify-content:space-between;margin-top:18px}
+.foot button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:9px 14px;font-size:14px;cursor:pointer}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><h1>Open House Prep</h1><span class="count" id="count"></span></div>
+  <div class="bar"><i id="fill"></i></div>
+  <div class="tabs" id="tabs"></div>
+</div></header>
+<main><div class="wrap" id="app">
+<h2 class="phase" data-phase="Today">Today</h2>
+<details open data-phase="Today"><summary><span>Walls &amp; trim</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-0-0"><span>Wash fingerprints around light switches</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-1"><span>Clean door frames and doors</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-2"><span>Magic Eraser scuffs where safe</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-3"><span>Wipe baseboards</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-4"><span>Clean stair railings</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-5"><span>Touch up chipped paint and wall dings</span></label></li>
+<li><label><input type="checkbox" data-id="0-0-6"><span>Fill obvious nail holes</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Doors &amp; hardware</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-1-0"><span>Clean every door and handle</span></label></li>
+<li><label><input type="checkbox" data-id="0-1-1"><span>Tighten loose handles</span></label></li>
+<li><label><input type="checkbox" data-id="0-1-2"><span>Fix doors that don&#x27;t close right</span></label></li>
+<li><label><input type="checkbox" data-id="0-1-3"><span>Lubricate squeaky hinges</span></label></li>
+<li><label><input type="checkbox" data-id="0-1-4"><span>Closet doors slide/open correctly</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Windows</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-2-0"><span>Clean inside glass</span></label></li>
+<li><label><input type="checkbox" data-id="0-2-1"><span>Clean sills and tracks</span></label></li>
+<li><label><input type="checkbox" data-id="0-2-2"><span>Remove dead bugs and cobwebs</span></label></li>
+<li><label><input type="checkbox" data-id="0-2-3"><span>Clean blinds</span></label></li>
+<li><label><input type="checkbox" data-id="0-2-4"><span>Wash dusty curtains</span></label></li>
+<li><label><input type="checkbox" data-id="0-2-5"><span>Check screens</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Kitchen deep clean</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-3-0"><span>Pull appliances out, clean under/behind</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-1"><span>Clean fridge doors and top</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-2"><span>Clean inside microwave</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-3"><span>Clean oven interior</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-4"><span>Clean range hood and filter</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-5"><span>Degrease backsplash</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-6"><span>Scrub grout</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-7"><span>Clean cabinet tops</span></label></li>
+<li><label><input type="checkbox" data-id="0-3-8"><span>Clean around dishwasher and fridge edges</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Bathrooms deep clean</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-4-0"><span>Remove hard-water buildup on faucets and shower glass</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-1"><span>Scrub grout</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-2"><span>Clean exhaust fan covers</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-3"><span>Clean behind and around toilets</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-4"><span>Scrub shower tracks</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-5"><span>Clean vanity drawers and cabinets</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-6"><span>Check caulk for mold or discoloration</span></label></li>
+<li><label><input type="checkbox" data-id="0-4-7"><span>Replace ugly shower curtain if needed</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Floors</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-5-0"><span>Move furniture and vacuum underneath</span></label></li>
+<li><label><input type="checkbox" data-id="0-5-1"><span>Get edges and corners</span></label></li>
+<li><label><input type="checkbox" data-id="0-5-2"><span>Clean floor vents</span></label></li>
+<li><label><input type="checkbox" data-id="0-5-3"><span>Mop thoroughly</span></label></li>
+<li><label><input type="checkbox" data-id="0-5-4"><span>Spot-clean carpet (pro clean if really dirty)</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Closets, pantry, cabinets</span><small></small></summary>
+<p class="note">Keep / Donate / Trash. Clear out about 25-30% so storage looks big.</p>
+<ul>
+<li><label><input type="checkbox" data-id="0-6-0"><span>Bedroom closets</span></label></li>
+<li><label><input type="checkbox" data-id="0-6-1"><span>Hall / coat closet</span></label></li>
+<li><label><input type="checkbox" data-id="0-6-2"><span>Pantry</span></label></li>
+<li><label><input type="checkbox" data-id="0-6-3"><span>Kitchen cabinets and drawers</span></label></li>
+<li><label><input type="checkbox" data-id="0-6-4"><span>Bathroom cabinets</span></label></li>
+<li><label><input type="checkbox" data-id="0-6-5"><span>Linen closet</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Garage</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-7-0"><span>Trash out</span></label></li>
+<li><label><input type="checkbox" data-id="0-7-1"><span>Organize tools</span></label></li>
+<li><label><input type="checkbox" data-id="0-7-2"><span>Stack bins neatly</span></label></li>
+<li><label><input type="checkbox" data-id="0-7-3"><span>Sweep</span></label></li>
+<li><label><input type="checkbox" data-id="0-7-4"><span>Clean oil stains</span></label></li>
+<li><label><input type="checkbox" data-id="0-7-5"><span>Get stuff off the floor</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Exterior</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="0-8-0"><span>Pressure wash porch and sidewalks</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-1"><span>Clean siding where dirty</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-2"><span>Clean gutters if needed</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-3"><span>Cobwebs around doors and windows</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-4"><span>Clean exterior light fixtures</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-5"><span>Wash outdoor furniture</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-6"><span>Hide hoses</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-7"><span>Clean around HVAC units</span></label></li>
+<li><label><input type="checkbox" data-id="0-8-8"><span>House numbers clean and visible</span></label></li>
+</ul></details>
+<details open data-phase="Today"><summary><span>Buyer inspection walk-through</span><small></small></summary>
+<p class="note">Open every cabinet, closet and drawer yourself. Fix, clean or hide whatever you&#x27;d flinch at.</p>
+<ul>
+<li><label><input type="checkbox" data-id="0-9-0"><span>Loose outlets / switch plates</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-1"><span>Burned-out bulbs</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-2"><span>Loose or dripping faucets</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-3"><span>Running toilets</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-4"><span>Loose cabinet handles</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-5"><span>Broken blinds</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-6"><span>Cracked caulk</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-7"><span>Missing trim</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-8"><span>Damaged screens</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-9"><span>Loose handrails</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-10"><span>Exposed cords</span></label></li>
+<li><label><input type="checkbox" data-id="0-9-11"><span>Anything that looks unfinished</span></label></li>
+</ul></details>
+<h2 class="phase" data-phase="Friday night">Friday night</h2>
+<details open data-phase="Friday night"><summary><span>Kitchen</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-0-0"><span>Counters clear (1-2 decor items max)</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-1"><span>Clean appliances, esp. stainless</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-2"><span>Clean sink and faucet</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-3"><span>Clean stovetop</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-4"><span>Dishes and dish rack put away</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-5"><span>Wipe cabinet fronts</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-6"><span>Hide trash can</span></label></li>
+<li><label><input type="checkbox" data-id="1-0-7"><span>Empty trash</span></label></li>
+</ul></details>
+<details open data-phase="Friday night"><summary><span>Bathrooms</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-1-0"><span>Toilets, tubs/showers, sinks, mirrors clean</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-1"><span>Fresh white/neutral towels out</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-2"><span>Hide toiletries, meds, razors, brushes</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-3"><span>Hide toilet brush and plunger</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-4"><span>Floors clean</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-5"><span>Empty trash</span></label></li>
+<li><label><input type="checkbox" data-id="1-1-6"><span>Toilet lids closed</span></label></li>
+</ul></details>
+<details open data-phase="Friday night"><summary><span>Bedrooms</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-2-0"><span>Beds made hotel-style</span></label></li>
+<li><label><input type="checkbox" data-id="1-2-1"><span>Clothes off floors and chairs</span></label></li>
+<li><label><input type="checkbox" data-id="1-2-2"><span>Nightstands cleared</span></label></li>
+<li><label><input type="checkbox" data-id="1-2-3"><span>Personal items put away</span></label></li>
+<li><label><input type="checkbox" data-id="1-2-4"><span>Extra furniture removed</span></label></li>
+</ul></details>
+<details open data-phase="Friday night"><summary><span>Living areas</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-3-0"><span>Vacuum and mop everything</span></label></li>
+<li><label><input type="checkbox" data-id="1-3-1"><span>Dust surfaces, fans, vents, baseboards</span></label></li>
+<li><label><input type="checkbox" data-id="1-3-2"><span>Remove excess decorations</span></label></li>
+<li><label><input type="checkbox" data-id="1-3-3"><span>Hide cords</span></label></li>
+<li><label><input type="checkbox" data-id="1-3-4"><span>Straighten pillows and blankets</span></label></li>
+</ul></details>
+<details open data-phase="Friday night"><summary><span>Easy to forget</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-4-0"><span>Replace burned-out bulbs</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-1"><span>Fingerprints off doors and switches</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-2"><span>Clean glass doors</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-3"><span>Wipe down front door</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-4"><span>Sweep porch</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-5"><span>Cobwebs outside</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-6"><span>Replace dirty HVAC filter</span></label></li>
+<li><label><input type="checkbox" data-id="1-4-7"><span>Take all trash and recycling out</span></label></li>
+</ul></details>
+<details open data-phase="Friday night"><summary><span>Curb appeal (30-45 min)</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="1-5-0"><span>Mow and trim</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-1"><span>Edge sidewalks</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-2"><span>Sweep driveway and porch</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-3"><span>Pull weeds, remove dead plants</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-4"><span>Clean porch light</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-5"><span>Put away hoses and tools</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-6"><span>Hide garbage cans</span></label></li>
+<li><label><input type="checkbox" data-id="1-5-7"><span>Fresh, simple doormat</span></label></li>
+</ul></details>
+<h2 class="phase" data-phase="Dogs &amp; agent">Dogs &amp; agent</h2>
+<details open data-phase="Dogs &amp; agent"><summary><span>Dogs</span><small></small></summary>
+<p class="note">Get them fully out of the house during the open house. Buyers need to open every door, and smell is hard to judge in your own home.</p>
+<ul>
+<li><label><input type="checkbox" data-id="2-0-0"><span>Dog toys, bowls and crates put away</span></label></li>
+<li><label><input type="checkbox" data-id="2-0-1"><span>Arrange somewhere for the dogs Saturday</span></label></li>
+<li><label><input type="checkbox" data-id="2-0-2"><span>Pet odors handled</span></label></li>
+<li><label><input type="checkbox" data-id="2-0-3"><span>Litter box / pet supplies hidden</span></label></li>
+</ul></details>
+<details open data-phase="Dogs &amp; agent"><summary><span>Ask the agent to set up</span><small></small></summary>
+<ul>
+<li><label><input type="checkbox" data-id="2-1-0"><span>Bottled water</span></label></li>
+<li><label><input type="checkbox" data-id="2-1-1"><span>Packaged snacks</span></label></li>
+<li><label><input type="checkbox" data-id="2-1-2"><span>Open-house signs</span></label></li>
+<li><label><input type="checkbox" data-id="2-1-3"><span>Property info sheet</span></label></li>
+<li><label><input type="checkbox" data-id="2-1-4"><span>Fresh flowers in kitchen/living room</span></label></li>
+</ul></details>
+<h2 class="phase" data-phase="Saturday">Saturday</h2>
+<details open data-phase="Saturday"><summary><span>15-minute shutdown</span><small></small></summary>
+<p class="note">Order: beds, counters, bathrooms, floors, lights, blinds, smells, leave.</p>
+<ul>
+<li><label><input type="checkbox" data-id="3-0-0"><span>Lights on throughout house</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-1"><span>Blinds and curtains open</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-2"><span>Thermostat comfortable</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-3"><span>Beds made</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-4"><span>Counters clear</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-5"><span>Dishes gone</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-6"><span>Trash gone</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-7"><span>Toilets clean, lids down</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-8"><span>All rooms and closets accessible</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-9"><span>Dog stuff gone</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-10"><span>Mail, documents, prescriptions hidden</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-11"><span>Valuables and jewelry secured</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-12"><span>No dirty laundry visible</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-13"><span>No weird odors</span></label></li>
+<li><label><input type="checkbox" data-id="3-0-14"><span>Exterior lights and entry look good</span></label></li>
+</ul></details>
+</div>
+<div class="wrap foot"><button id="collapse">Collapse all</button><button id="reset">Reset checklist</button></div>
+</main>
+<script>
+(function(){
+var PHASES=["Today", "Friday night", "Dogs & agent", "Saturday"], KEY="openhouse-checklist-v1", state={}, filter="All", isOpen=true;
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){state={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+var boxes=[].slice.call(document.querySelectorAll("input[type=checkbox]"));
+var secs=[].slice.call(document.querySelectorAll("details"));
+var heads=[].slice.call(document.querySelectorAll("h2.phase"));
+var tabs=document.getElementById("tabs");
+boxes.forEach(function(b){
+  b.checked=!!state[b.dataset.id];
+  b.addEventListener("change",function(){if(b.checked)state[b.dataset.id]=1;else delete state[b.dataset.id];save();update();});
+});
+function update(){
+  var done=boxes.filter(function(b){return b.checked;}).length;
+  document.getElementById("count").textContent=done+" / "+boxes.length+" done";
+  document.getElementById("fill").style.width=(done/boxes.length*100)+"%";
+  secs.forEach(function(d){
+    var bs=d.querySelectorAll("input"),n=0;
+    [].forEach.call(bs,function(b){if(b.checked)n++;});
+    d.querySelector("small").textContent=n+"/"+bs.length;
+    d.querySelector("summary").className=(n===bs.length)?"full":"";
+    d.classList.toggle("hidden",filter!=="All"&&d.dataset.phase!==filter);
+  });
+  heads.forEach(function(h){h.classList.toggle("hidden",filter!=="All"&&h.dataset.phase!==filter);});
+  [].forEach.call(tabs.children,function(t){t.className=(t.dataset.f===filter)?"on":"";});
+}
+["All"].concat(PHASES).forEach(function(f){
+  var b=document.createElement("button");b.textContent=f;b.dataset.f=f;
+  b.addEventListener("click",function(){filter=f;update();window.scrollTo(0,0);});
+  tabs.appendChild(b);
+});
+document.getElementById("collapse").addEventListener("click",function(){
+  isOpen=!isOpen;secs.forEach(function(d){d.open=isOpen;});
+  this.textContent=isOpen?"Collapse all":"Expand all";
+});
+document.getElementById("reset").addEventListener("click",function(){
+  if(!confirm("Clear every checkmark?"))return;
+  state={};save();boxes.forEach(function(b){b.checked=false;});update();
+});
+update();
+})();
+</script>
+</body>
+</html>
